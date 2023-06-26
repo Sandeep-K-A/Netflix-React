@@ -5,7 +5,7 @@ import "./Banner.css";
 
 function Banner() {
   const [movie, setMovie] = useState();
-  let randomNumber = Math.floor(Math.random() * 21);
+  let randomNumber = Math.floor(Math.random() * 20);
   useEffect(() => {
     axios
       .get(`trending/all/week?api_key=${API_KEY}&language=en-US`)

@@ -3,7 +3,7 @@ import "./NavBar.css";
 function NavBar() {
   const [show, handleShow] = useState(false);
   const handleScroll = () => {
-    if (window.scrollY > 50) {
+    if (window.scrollY > 100) {
       handleShow(true);
     } else handleShow(false);
   };
