@@ -1,8 +1,21 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./NavBar.css";
 function NavBar() {
+  const [show, handleShow] = useState(false);
+  const handleScroll = () => {
+    if (window.scrollY > 50) {
+      handleShow(true);
+    } else handleShow(false);
+  };
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    }
+  }, [])
+
   return (
-    <div className="navbar">
+    <div className={`navbar ${show && "navbar_black"}`}>
       <img
         className="logo"
         src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Netflix_2015_logo.svg/1920px-Netflix_2015_logo.svg.png"

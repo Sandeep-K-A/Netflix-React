@@ -1,13 +1,11 @@
 .banner {
-  background-image: url(https://wallpaperaccess.com/full/2703652.png);
   background-size: cover;
-  object-fit: contain;
-  height: 448px;
+  height: 600px;
   color: white;
 }
 
 .banner_contents {
-  padding-top: 140px;
+  padding-top: 270px;
   height: 190px;
   margin-left: 50px;
 }
@@ -15,14 +13,14 @@
 .banner_title {
   font-size: 3rem;
   font-weight: 800;
-  padding-bottom: 0.3rem;
+  padding-bottom: 1.5rem;
 }
 
 .banner_button {
   color: white;
   outline: none;
   border: none;
-  font-weight: 700;
+  font-weight: 800;
   border-radius: 5px;
   padding-left: 2rem;
   padding-right: 2rem;
@@ -41,14 +39,14 @@
 .banner_description {
   width: 45rem;
   line-height: 1.3;
-  padding-top: 1rem;
-  font-size: 1rem;
+  padding-top: 1.5rem;
+  font-size: 1.2rem;
   height: 80px;
   max-width: 360px;
 }
 
 .fade_bottom {
-  height: 7.4rem;
+  height: 8.9rem;
   background-image: linear-gradient(
     180deg,
     transparent,
