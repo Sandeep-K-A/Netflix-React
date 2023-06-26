@@ -8,6 +8,7 @@ function RowPost(props) {
     const [movies, setMovies] = useState([]);
     const [UrlId, setUrlId] = useState('');
     const [dImg, setDimg] = useState({ state: true })
+    const [timeoutId, setTimeoutId] = useState(null);
     useEffect(() => {
         axios.get(props.url).then((response) => {
             setMovies(response.data.results)
@@ -28,18 +29,22 @@ function RowPost(props) {
     };
 
     const handleMovie = (id) => {
-        console.log(id)
-        axios.get(`/movie/${id}/videos?api_key=${API_KEY}&language=en-US`).then((response) => {
-            if (response.data.results.length) {
-                setUrlId({ movie: response.data.results[0], index: id })
-                setDimg({ state: false, index: id })
-            }
-        }).catch((error) => {
-            console.log(error)
-        })
+        clearTimeout(timeoutId)
+        const newTimeoutId = setTimeout(() => {
+            axios.get(`/movie/${id}/videos?api_key=${API_KEY}&language=en-US`).then((response) => {
+                if (response.data.results.length) {
+                    setUrlId({ movie: response.data.results[0], index: id })
+                    setDimg({ state: false, index: id })
+                }
+            }).catch((error) => {
+                console.log(error)
+            })
+        }, 2000);
+        setTimeoutId(newTimeoutId);
     }
 
     const leaveMovie = (id) => {
+        clearTimeout(timeoutId)
         setUrlId(null);
         setDimg({ state: true, index: id })
     }
@@ -52,10 +57,10 @@ function RowPost(props) {
                     <div id={movie.id} key={movie.id} onMouseEnter={() => handleMovie(movie.id)} onMouseLeave={() => leaveMovie(movie.id)}>
                         {UrlId?.movie && UrlId.index == movie.id ? (<YouTube key={movie.id} opts={opts} videoId={UrlId.movie.key} />) :
                             (<img className="poster" src={`${imageUrl + movie.backdrop_path}`} alt="poster" />)}
+                        <h4>{movie.original_title ? movie.original_title : movie.original_name}</h4>
 
                     </div>
                 )}
-
             </div>
 
         </div>
